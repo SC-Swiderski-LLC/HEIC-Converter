@@ -2,7 +2,7 @@
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "S.C. Swiderski, LLC"
 #define MyAppURL ""
-#define MyAppExeName "heic_to_jpeg.exe"
+#define MyAppExeName "heiccv.exe"
 #define MyAppId "{{42cca145-4d3e-4ba0-a9b2-0b832c1b36d2}}"
 
 [Setup]
@@ -43,6 +43,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "heiccv.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "heiccv.ps1"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: nowait postinstall skipifsilent unchecked
@@ -54,9 +56,27 @@ Root: HKLM; Subkey: "Software\S.C. Swiderski\{#MyAppName}"; ValueType: string; V
 Root: HKLM; Subkey: "Software\S.C. Swiderski\{#MyAppName}"; ValueType: string; ValueName: "AppId"; ValueData: "{#MyAppId}"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.heic\shell\Convert to JPEG"; ValueType: string; ValueName: ""; ValueData: "Convert to JPEG"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.heic\shell\Convert to JPEG\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Check: NeedsAddPath('{app}')
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{userappdata}\{#MyAppName}"
 Type: filesandordirs; Name: "{localappdata}\{#MyAppName}"
 Type: filesandordirs; Name: "{pf64}\{#MyAppName}"
+
+[Code]
+function NeedsAddPath(Param: string): boolean;
+var
+  OrigPath: string;
+begin
+  if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
+    'Path', OrigPath)
+  then begin
+    Result := True;
+    exit;
+  end;
+  // look for the path with leading and trailing semicolon
+  // Pos() returns 0 if not found
+  Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
+end;
 
