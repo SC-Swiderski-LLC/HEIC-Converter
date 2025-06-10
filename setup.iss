@@ -55,12 +55,6 @@ Root: HKLM; Subkey: "Software\S.C. Swiderski\{#MyAppName}"; ValueType: string; V
 Root: HKLM; Subkey: "Software\S.C. Swiderski\{#MyAppName}"; ValueType: string; ValueName: "AppId"; ValueData: "{#MyAppId}"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.heic\shell\Convert to JPEG"; ValueType: string; ValueName: ""; ValueData: "Convert to JPEG"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "SystemFileAssociations\.heic\shell\Convert to JPEG\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
-Root: HKCR; Subkey: "AppX4mntx4h978m1v9gtzv0ewksfd6pmwsre\shell\Convert to JPEG"; ValueType: string; ValueName: ""; ValueData: "Convert to JPEG"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "AppX4mntx4h978m1v9gtzv0ewksfd6pmwsre\shell\Convert to JPEG\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
-Root: HKCR; Subkey: "AppXcesbfs704v2mjbts9dkr42s9vmrhxbkj\shell\Convert to JPEG"; ValueType: string; ValueName: ""; ValueData: "Convert to JPEG"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "AppXcesbfs704v2mjbts9dkr42s9vmrhxbkj\shell\Convert to JPEG\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
-Root: HKCR; Subkey: "GIMP3.heic\shell\Convert to JPEG"; ValueType: string; ValueName: ""; ValueData: "Convert to JPEG"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "GIMP3.heic\shell\Convert to JPEG\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{userappdata}\{#MyAppName}"
