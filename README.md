@@ -25,19 +25,7 @@ HEIC Converter is a simple Windows tool that adds a right-click context menu ite
 ## Command Line Usage
 After installation, you can use the converter from anywhere in your system using the `heiccv` command (short for "HEIC ConVert"):
 
-### Basic Usage
-```cmd
-# Convert a single file
-heiccv photo.heic
-
-# Convert multiple files
-heiccv photo1.heic photo2.heic photo3.heic
-
-# Convert all HEIC files in current directory
-heiccv *.heic
-```
-
-### PowerShell Usage
+### PowerShell Example
 ```powershell
 # Convert with custom quality
 heiccv photo.heic -Quality 90
@@ -49,12 +37,24 @@ heiccv *.heic -Overwrite
 heiccv C:\Photos\*.heic
 ```
 
-### Advanced Options
+### Command Prompt Example
 ```cmd
-# Using the Python script directly for more options
-heiccv.exe --help
-heiccv.exe photo.heic --quality 85 --overwrite
+# Convert with custom quality
+heiccv photo.heic -Quality 90
+
+# Overwrite existing JPEG files
+heiccv *.heic -Overwrite
+
+# Convert all HEIC files in a directory
+heiccv C:\Photos\*.heic
 ```
+## Batch Processing
+You can convert multiple HEIC files at once by specifying a wildcard pattern or multiple file paths. For example:
+
+```cmd
+heiccv C:\Photos\*.heic
+```
+---
 
 ## Uninstallation
 - Use "Add or Remove Programs" in Windows to uninstall HEIC Converter. This will remove the context menu and all registry entries.
