@@ -38,23 +38,41 @@ def main():
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing JPEG files')
     
     args = parser.parse_args()
-    
-    # Expand wildcards
+      # Expand wildcards
     all_files = []
     for pattern in args.files:
+        # Use glob to expand wildcards
         matches = glob.glob(pattern)
         if matches:
             all_files.extend(matches)
         else:
-            # If no wildcard matches, add the file as-is (might be a direct path)
-            all_files.append(pattern)
+            # If no wildcard matches, check if it's actually a wildcard pattern
+            if '*' in pattern or '?' in pattern:
+                # It's a wildcard pattern but no matches found
+                print(f"No files found matching pattern: {pattern}")
+            else:
+                # It's a direct file path, add as-is
+                all_files.append(pattern)
     
     if not all_files:
         print("No files found to convert.")
         return 1
     
-    # Filter for HEIC files
-    heic_files = [f for f in all_files if f.lower().endswith(('.heic', '.heif'))]
+    # Filter for HEIC files and provide better error messages
+    heic_files = []
+    non_heic_files = []
+    
+    for f in all_files:
+        if f.lower().endswith(('.heic', '.heif')):
+            heic_files.append(f)
+        else:
+            non_heic_files.append(f)
+    
+    if non_heic_files:
+        print(f"Skipping {len(non_heic_files)} non-HEIC files:")
+        for f in non_heic_files:
+            print(f"  - {f}")
+        print()
     
     if not heic_files:
         print("No HEIC files found in the specified files.")
@@ -81,7 +99,10 @@ def main():
 
 if __name__ == "__main__":
     # Legacy support for single file argument (for context menu compatibility)
-    if len(sys.argv) == 2 and not sys.argv[1].startswith('-'):
+    # Only use legacy mode for actual files (not wildcards) and when the file exists
+    if (len(sys.argv) == 2 and not sys.argv[1].startswith('-') and 
+        '*' not in sys.argv[1] and '?' not in sys.argv[1] and 
+        os.path.exists(sys.argv[1])):
         if heic_to_jpeg(sys.argv[1], 95):
             sys.exit(0)
         else:
