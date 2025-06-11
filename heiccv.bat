@@ -1,24 +1,24 @@
 @echo off
 REM HEIC Converter Command Line Wrapper
-REM Usage: heiccv <file.heic> [file2.heic] [file3.heic] ...
-
-if "%~1"=="" (
-    echo Usage: heiccv ^<file.heic^> [file2.heic] [file3.heic] ...
-    echo.
-    echo Examples:
-    echo   heiccv photo.heic
-    echo   heiccv *.heic
-    echo   heiccv photo1.heic photo2.heic photo3.heic
-    exit /b 1
-)
+REM This script passes all arguments directly to the console executable
 
 set SCRIPT_DIR=%~dp0
-set CONVERTER="%SCRIPT_DIR%heiccv.exe"
+set CONVERTER="%SCRIPT_DIR%heiccv-console.exe"
 
 REM For development/testing, also check the dist folder
 if not exist %CONVERTER% (
-    set CONVERTER="%SCRIPT_DIR%dist\heiccv.exe"
+    set CONVERTER="%SCRIPT_DIR%dist\heiccv-console.exe"
 )
+
+if not exist %CONVERTER% (
+    echo Error: HEIC converter not found at %CONVERTER%
+    echo Make sure heiccv-console.exe is in the same directory as this script or in the dist folder
+    exit /b 1
+)
+
+REM Pass all arguments to the executable
+%CONVERTER% %*
+exit /b %errorlevel%
 
 :loop
 if "%~1"=="" goto :eof

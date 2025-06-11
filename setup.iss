@@ -42,7 +42,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Tasks]
 
 [Files]
-Source: "dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\heiccv.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\heiccv-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "heiccv.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "heiccv.ps1"; DestDir: "{app}"; Flags: ignoreversion
 

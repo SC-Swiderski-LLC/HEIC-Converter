@@ -8,8 +8,11 @@ REM Create dist directory if it doesn't exist
 if not exist "dist" mkdir dist
 
 REM Build the executable with PyInstaller
-echo Building executable...
-pyinstaller --onefile --clean --name heiccv heic_to_jpeg.py
+echo Building console executable...
+pyinstaller --clean heiccv_console.spec
+
+echo Building windowed executable for context menu...
+pyinstaller --clean heiccv_windowed.spec
 
 if errorlevel 1 (
     echo Build failed!

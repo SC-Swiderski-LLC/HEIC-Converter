@@ -1,43 +1,24 @@
 # HEIC Converter PowerShell Wrapper
-# Usage: heiccv photo.heic [photo2.heic] [photo3.heic] ...
-
-param(
-    [Parameter(Position=0, ValueFromRemainingArguments=$true)]
-    [string[]]$Files = @(),
-    
-    [int]$Quality = 95,
-    
-    [switch]$Overwrite
-)
+# This script passes all arguments directly to the console executable
 
 # Get the script directory
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$Converter = Join-Path $ScriptDir "heiccv.exe"
+$Converter = Join-Path $ScriptDir "heiccv-console.exe"
 
 # For development/testing, also check the dist folder
 if (-not (Test-Path $Converter)) {
-    $Converter = Join-Path $ScriptDir "dist\heiccv.exe"
+    $Converter = Join-Path $ScriptDir "dist\heiccv-console.exe"
 }
 
 if (-not (Test-Path $Converter)) {
     Write-Error "HEIC converter not found at: $Converter"
-    Write-Error "Make sure heiccv.exe is in the same directory as this script or in the dist folder"
+    Write-Error "Make sure heiccv-console.exe is in the same directory as this script or in the dist folder"
     exit 1
 }
 
-if ($Files.Count -eq 0) {
-    Write-Host "Usage: heiccv <file.heic> [file2.heic] [file3.heic] ..."
-    Write-Host ""
-    Write-Host "Examples:"
-    Write-Host "  heiccv photo.heic"
-    Write-Host "  heiccv *.heic"
-    Write-Host "  heiccv photo1.heic photo2.heic photo3.heic"
-    Write-Host ""
-    Write-Host "Options:"
-    Write-Host "  -Quality <1-100>  JPEG quality (default: 95)"
-    Write-Host "  -Overwrite        Overwrite existing JPEG files"
-    exit 1
-}
+# Pass all arguments directly to the executable
+& $Converter $args
+exit $LASTEXITCODE
 
 # Expand wildcards and collect all HEIC files
 $HeicFiles = @()
