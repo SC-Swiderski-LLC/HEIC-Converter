@@ -2,6 +2,8 @@
 
 HEIC Converter is a simple Windows tool that adds a right-click context menu item for converting HEIC image files to JPEG format. After installation, you can right-click any .heic file in Windows Explorer and select "Convert to JPEG" to instantly create a JPEG version of the image in the same folder.
 
+![HEIC Converter Demo](assets/demo.gif)
+
 ## Features
 - Adds a context menu entry for .heic files in Windows Explorer
 - Converts HEIC images to JPEG format with a single click
