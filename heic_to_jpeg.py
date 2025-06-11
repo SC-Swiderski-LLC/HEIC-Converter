@@ -7,7 +7,7 @@ from PIL import Image
 
 pillow_heif.register_heif_opener()
 
-def heic_to_jpeg(heic_file_path):
+def heic_to_jpeg(heic_file_path, quality=95):
     """Convert a single HEIC file to JPEG format."""
     try:
         if not os.path.exists(heic_file_path):
@@ -16,7 +16,7 @@ def heic_to_jpeg(heic_file_path):
             
         image = Image.open(heic_file_path)
         jpeg_file_path = heic_file_path.rsplit('.', 1)[0] + '.jpg'
-        image.save(jpeg_file_path, "JPEG")
+        image.save(jpeg_file_path, "JPEG", quality=quality)
         print(f"✓ Converted {heic_file_path} to {jpeg_file_path}")
         return True
     except Exception as e:
@@ -73,7 +73,7 @@ def main():
             print(f"⚠ Skipped {heic_file} (JPEG already exists, use --overwrite to replace)")
             continue
             
-        if heic_to_jpeg(heic_file):
+        if heic_to_jpeg(heic_file, args.quality):
             success_count += 1
     
     print(f"\nConversion complete: {success_count}/{len(heic_files)} files converted successfully.")
@@ -82,7 +82,7 @@ def main():
 if __name__ == "__main__":
     # Legacy support for single file argument (for context menu compatibility)
     if len(sys.argv) == 2 and not sys.argv[1].startswith('-'):
-        if heic_to_jpeg(sys.argv[1]):
+        if heic_to_jpeg(sys.argv[1], 95):
             sys.exit(0)
         else:
             sys.exit(1)

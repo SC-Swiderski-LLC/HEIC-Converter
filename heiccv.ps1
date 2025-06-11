@@ -72,17 +72,23 @@ foreach ($HeicFile in $HeicFiles) {
     
     Write-Host "Converting: $HeicFile" -ForegroundColor Yellow
     
-    $Args = @("--quality", $Quality)
-    if ($Overwrite) { $Args += "--overwrite" }
-    $Args += $HeicFile
-    
-    try {
-        & $Converter $Args
+    $ConvArgs = @()
+    $useMulti = $false
+    if ($Quality -ne 95) { $ConvArgs += "--quality"; $ConvArgs += $Quality; $useMulti = $true }
+    if ($Overwrite) { $ConvArgs += "--overwrite"; $useMulti = $true }
+    $ConvArgs += $HeicFile
+      try {
+        if ($useMulti) {
+            & $Converter $ConvArgs
+        } else {
+            & $Converter $HeicFile
+        }
+        
         if ($LASTEXITCODE -eq 0) {
             $SuccessCount++
             Write-Host "Successfully converted: $HeicFile" -ForegroundColor Green
         } else {
-            Write-Error "Failed to convert: $HeicFile"
+            Write-Error "Failed to convert: $HeicFile (exit code $LASTEXITCODE)"
         }
     } catch {
         Write-Error "Error converting ${HeicFile}: $_"
