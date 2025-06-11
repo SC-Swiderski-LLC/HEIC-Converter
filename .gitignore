@@ -19,6 +19,9 @@ lib64/
 parts/
 sdist/
 var/
+
+# Installer output
+installer/
 wheels/
 share/python-wheels/
 *.egg-info/
