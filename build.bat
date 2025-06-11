@@ -9,7 +9,7 @@ if not exist "dist" mkdir dist
 
 REM Build the executable with PyInstaller
 echo Building executable...
-pyinstaller --onefile --console --name heiccv heic_to_jpeg.py
+pyinstaller --onefile --windowed --name heiccv heic_to_jpeg.py
 
 if errorlevel 1 (
     echo Build failed!
