@@ -1,5 +1,5 @@
 #define MyAppName "HEIC Converter"
-#define MyAppVersion "1.0.2"
+#define MyAppVersion "1.0.3"
 #define MyAppPublisher "S.C. Swiderski, LLC"
 #define MyAppURL ""
 #define MyAppExeName "heiccv.exe"
@@ -44,7 +44,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Files]
 Source: "dist\heiccv.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\heiccv-console.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "heiccv.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "heiccv.ps1"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
