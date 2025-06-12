@@ -31,37 +31,25 @@ The context menu is perfect for converting a few photos quickly. For batch proce
 3. After installation, right-click any .heic file and choose "Convert to JPEG".
 4. **The installer automatically adds the converter to your system PATH**, allowing you to use it from any command prompt or PowerShell session.
 
-## Command Line Usage
+## PowerShell Usage
 After installation, you can use the converter from anywhere in your system using the `heiccv` command (short for "HEIC ConVert"):
 
-### PowerShell Example
+### Examples
 ```powershell
 # Convert with custom quality
-heiccv photo.heic -Quality 90
+heiccv "photo.heic" -Quality 90
 
 # Overwrite existing JPEG files
-heiccv *.heic -Overwrite
+heiccv "*.heic" -Overwrite
 
 # Convert all HEIC files in a directory
-heiccv C:\Photos\*.heic
-```
-
-### Command Prompt Example
-```cmd
-# Convert with custom quality
-heiccv photo.heic -Quality 90
-
-# Overwrite existing JPEG files
-heiccv *.heic -Overwrite
-
-# Convert all HEIC files in a directory
-heiccv C:\Photos\*.heic
+heiccv "C:\Photos\*.heic"
 ```
 ## Batch Processing
 You can convert multiple HEIC files at once by specifying a wildcard pattern or multiple file paths. For example:
 
-```cmd
-heiccv C:\Photos\*.heic
+```powershell
+heiccv "C:\Photos\*.heic"
 ```
 ---
 
