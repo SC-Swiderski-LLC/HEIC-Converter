@@ -19,8 +19,8 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf64}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=LICENSE
-OutputDir=installer
+LicenseFile=..\LICENSE
+OutputDir=..\installer
 OutputBaseFilename=HEIC_Converter_Installer_x64
 Compression=lzma
 SolidCompression=yes
@@ -42,8 +42,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Tasks]
 
 [Files]
-Source: "dist\heiccv.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\heiccv-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\heiccv.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\heiccv-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "heiccv.ps1"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
