@@ -7,7 +7,7 @@ from PIL import Image
 
 pillow_heif.register_heif_opener()
 
-def heic_to_jpeg(heic_file_path, quality=95, verbose=True):
+def heic_to_jpeg(heic_file_path, quality=70, verbose=True):
     """Convert a single HEIC file to JPEG format."""
     try:
         if not os.path.exists(heic_file_path):
@@ -51,8 +51,8 @@ def expand_wildcards(patterns):
 def main():
     parser = argparse.ArgumentParser(description="Convert HEIC images to JPEG format")
     parser.add_argument("files", nargs="+", help="HEIC file(s) to convert. Supports wildcards.")
-    parser.add_argument("--quality", type=int, default=95, 
-                       help="JPEG quality (1-100, default: 95)")
+    parser.add_argument("--quality", type=int, default=70, 
+                       help="JPEG quality (1-100, default: 70)")
     parser.add_argument("--overwrite", action="store_true",
                        help="Overwrite existing JPEG files")
     

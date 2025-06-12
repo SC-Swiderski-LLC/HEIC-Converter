@@ -5,7 +5,7 @@ from PIL import Image
 
 pillow_heif.register_heif_opener()
 
-def heic_to_jpeg_silent(heic_file_path, quality=95):
+def heic_to_jpeg_silent(heic_file_path, quality=70):
     """Convert a single HEIC file to JPEG format silently."""
     try:
         if not os.path.exists(heic_file_path):
@@ -26,9 +26,8 @@ if __name__ == "__main__":
     file_path = sys.argv[1]
     if not os.path.exists(file_path) or not file_path.lower().endswith(('.heic', '.heif')):
         sys.exit(1)
-    
-    # Convert the file silently
-    if heic_to_jpeg_silent(file_path, 95):
+      # Convert the file silently
+    if heic_to_jpeg_silent(file_path, 70):
         sys.exit(0)
     else:
         sys.exit(1)
