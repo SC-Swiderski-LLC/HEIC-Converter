@@ -1,5 +1,5 @@
 #define MyAppName "HEIC Converter"
-#define MyAppVersion "1.0.3"
+#define MyAppVersion "1.0.4"
 #define MyAppPublisher "S.C. Swiderski, LLC"
 #define MyAppURL ""
 #define MyAppExeName "heiccv.exe"
