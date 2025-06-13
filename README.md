@@ -34,6 +34,8 @@ The context menu is perfect for converting a few photos quickly. For batch proce
 ## PowerShell Usage
 After installation, you can use the converter from anywhere in your system using the `heiccv` command (short for "HEIC ConVert"):
 
+![HEIC Converter PowerShell Demo](assets/demo-console.gif)
+
 ### Examples
 ```powershell
 # Convert with custom quality
